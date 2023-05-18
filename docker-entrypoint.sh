@@ -154,6 +154,8 @@ function make_config {
         -e "s#@CKANEXT_SAML2AUTH_ALLOW_UNSOLICITED@#$CKANEXT_SAML2AUTH_ALLOW_UNSOLICITED#" \
         -e "s#@CKANEXT_SAML2AUTH_REQUIRED_ATTRIBUTES@#$CKANEXT_SAML2AUTH_REQUIRED_ATTRIBUTES#" \
         -e "s#@CKANEXT_SAML2AUTH_WANT_ASSERTIONS_SIGNED@#$CKANEXT_SAML2AUTH_WANT_ASSERTIONS_SIGNED#" \
+        -e "s#CKANEXT_BPATOGALAXY_GALAXY_HOST#$CKANEXT_BPATOGALAXY_GALAXY_HOST#" \
+        -e "s#CKANEXT_BPATOGALAXY_GALAXY_API_KEY#$CKANEXT_BPATOGALAXY_GALAXY_API_KEY#" \
         -e "s#@APITOKEN_SECRET@#$APITOKEN_SECRET#" /etc/ckan/default/ckan.ini
     sed -i \
         -e "s#@UWSGI_THREADS@#$UWSGI_THREADS#" \
@@ -193,7 +195,7 @@ if [ "$1" = 'uwsgi' ]; then
 
     if [ x"$LOCAL_DEV" = x"yes" ]; then
       # install local copies of various modules
-      for mod in ckan ckanext-bulk ckanext-bpatheme ckanext-bpaschema ckanext-s3filestore ckanext-scheming ckanext-spatial ckanext-initiatives ckanext-ytp-request ckanext-saml2auth ckanext-cilogin; do
+      for mod in ckan ckanext-bulk ckanext-bpatheme ckanext-bpaschema ckanext-s3filestore ckanext-scheming ckanext-spatial ckanext-initiatives ckanext-ytp-request ckanext-saml2auth ckanext-cilogin ckanext-bpatogalaxy; do
           cd /app/"$mod" && pip install -U -e .
       done
       exec uwsgi --die-on-term --ini ${UWSGI_OPTS} --py-autoreload 1
