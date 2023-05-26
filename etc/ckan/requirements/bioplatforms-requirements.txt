@@ -36,6 +36,7 @@ testrepository
 flask-babel==2.0.0
 pandas==1.4.3
 bitmath
+bioblend==1.1.1
 # for Python 2 to 3 migration
 six
 
